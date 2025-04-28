@@ -1,40 +1,80 @@
 ---
-import { Image } from "astro:assets";
-import logoImg from "../assets/logo.png";
-
-const navItems = [{ label: "Tentang Kami", href: "#" }];
+const pathname = Astro.url.pathname;
+const navItems = [
+  { label: "Beranda", href: "/" },
+  { label: "Program", href: "/program" },
+  { label: "UMKM", href: "/umkm" },
+  { label: "Artikel", href: "/artikel" },
+];
 ---
 
-<header class="bg-white shadow-md">
-	<div class="container mx-auto px-4 py-4 flex justify-between items-center">
-		<a href="/" class="flex font-serif font-bold items-center">
-			<Image
-				src={logoImg}
-				alt="Company Logo Image"
-				class="rounded-lg"
-				width={48}
-				height={48}
-			/>
-			<span class="ml-2">FOKUS</span>
-		</a>
-		<nav class="hidden md:flex space-x-6">
-			{
-				navItems.map((item) => (
-					<a
-						href={item.href}
-						class="text-gray-700 hover:text-primary-500 transition duration-150 ease-in-out"
-					>
-						{item.label}
-					</a>
-				))
-			}
-		</nav>
-		<!-- Ganti ke gform -->
-		<a
-			href="/#"
-			class="bg-primary-500 text-white px-4 py-2 rounded hover:bg-primary-600 transition duration-150 ease-in-out"
-		>
-			Bergabung
-		</a>
-	</div>
-</header>
+<div class="drawer">
+  <input id="drawer-toggle" type="checkbox" class="drawer-toggle" />
+
+  <div class="drawer-content">
+    <!-- Header -->
+    <header class="bg-white shadow-md navbar">
+      <div
+        class="container mx-auto px-4 py-4 flex justify-between items-center"
+      >
+        <a href="/" class="link link-hover flex font-bold items-center">
+          <span class="ml-2 text-red-700 font-bold text-xl">FOKUS</span>
+        </a>
+
+        <!-- Desktop Nav -->
+        <nav class="hidden md:flex space-x-6">
+          {
+            navItems.map((item) => (
+              <a
+                href={item.href}
+                class={`text-gray-700 hover:text-primary-500 transition duration-150 ease-in-out ${
+                  pathname === item.href ? "text-red-500 font-bold" : ""
+                }`}
+              >
+                {item.label}
+              </a>
+            ))
+          }
+        </nav>
+
+        <!-- Mobile Menu Button -->
+        <label for="drawer-toggle" class="btn btn-ghost md:hidden">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            class="h-6 w-6"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="red"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M4 6h16M4 12h16M4 18h16"></path>
+          </svg>
+        </label>
+      </div>
+    </header>
+  </div>
+
+  <!-- Drawer Menu -->
+  <div class="drawer-side">
+    <label for="drawer-toggle" class="drawer-overlay"></label>
+    <ul class="menu p-4 w-64 bg-white text-base-content h-full">
+      {
+        navItems.map((item) => (
+          <li>
+            <a
+              href={item.href}
+              class={`text-gray-700 hover:text-primary-500 transition duration-150 ease-in-out ${
+                pathname === item.href ? "text-red-500 font-bold" : ""
+              }`}
+            >
+              {item.label}
+            </a>
+          </li>
+        ))
+      }
+    </ul>
+  </div>
+</div>

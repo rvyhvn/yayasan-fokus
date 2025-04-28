@@ -1,38 +1,46 @@
 ---
 import { Image } from "astro:assets";
-// import impactImage from "../assets/grandmother-playing.png";
 const impactImage = "https://placehold.co/600x400";
-
-const challenges = [
-	"Kurangnya akses pasar dan visibilitas online",
-	"Minimnya pemahaman pemasaran digital",
-	"Pengelolaan keuangan yang belum optimal",
-	"Kurangnya literasi digital dalam penggunaan teknologi bisnis",
-];
 ---
 
-<section class="bg-white py-20">
-	<div class="container mx-auto px-4">
-		<div class="flex flex-col md:flex-row items-center gap-12">
-			<div class="md:w-1/2">
-				<Image
-					src={impactImage}
-					alt="Grandmother and granddaughter laughing together while playing on the grass"
-					class="rounded-lg shadow-xl w-full"
-					width={600}
-					height={400}
-				/>
-			</div>
-			<div class="md:w-1/2">
-				<h2
-					class="text-4xl md:text-5xl font-serif font-bold text-gray-900 mb-6"
-				>
-					Mengapa kami ada?
-				</h2>
-				<ul class="text-xl text-gray-700 list-disc list-inside space-y-2">
-					{challenges.map((challenge) => <li>{challenge}</li>)}
-				</ul>
-			</div>
-		</div>
-	</div>
+<section class="bg-white py-8">
+  <div class="container mx-auto px-4">
+    <div class="flex flex-col md:flex-row items-center gap-12">
+      <div class="md:w-1/2">
+        <Image
+          src={impactImage}
+          alt="Grandmother and granddaughter laughing together while playing on the grass"
+          class="rounded-lg shadow-xl w-full"
+          width={600}
+          height={400}
+        />
+      </div>
+
+      <!-- 12 Jenis Program dan 47 Pemberdayaan UMKM -->
+      <div class="md:w-1/2">
+        <div class="flex flex-row items-center gap-10">
+          <p class="w-1/2 flex flex-col text-red-700 font-extrabold text-8xl">
+            12 <span class="text-3xl font-bold">Jenis<br />Program</span>
+          </p>
+          <p class="w-2/3 text-black text-justify">
+            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ut ea hic
+            quam odio, repellendus libero dolore, nostrum pariatur sed veniam
+            modi doloremque mollitia facere reprehenderit quis! Id
+            exercitationem alias aperiam?
+          </p>
+        </div>
+        <div class="flex flex-row items-center gap-10 mt-6">
+          <p class="w-1/2 text-black text-justify">
+            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ut ea hic
+            quam odio, repellendus libero dolore, nostrum pariatur sed veniam
+            modi doloremque mollitia facere reprehenderit quis! Id
+            exercitationem alias aperiam?
+          </p>
+          <p class="w-1/2 flex flex-col text-red-700 font-extrabold text-8xl">
+            47 <span class="text-3xl font-bold">Pemberdayaan <br /> UMKM</span>
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
 </section>
