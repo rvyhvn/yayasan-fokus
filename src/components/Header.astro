@@ -1,40 +1,31 @@
 ---
-import { Image } from "astro:assets";
-import logoImg from "../assets/logo.png";
-
-const navItems = [{ label: "Tentang Kami", href: "#" }];
+const pathname = Astro.url.pathname;
+const navItems = [
+  { label: "Beranda", href: "/" },
+  { label: "Program", href: "/program" },
+  { label: "UMKM", href: "/umkm" },
+  { label: "Artikel", href: "/artikel" },
+];
 ---
 
 <header class="bg-white shadow-md">
-	<div class="container mx-auto px-4 py-4 flex justify-between items-center">
-		<a href="/" class="flex font-serif font-bold items-center">
-			<Image
-				src={logoImg}
-				alt="Company Logo Image"
-				class="rounded-lg"
-				width={48}
-				height={48}
-			/>
-			<span class="ml-2">FOKUS</span>
-		</a>
-		<nav class="hidden md:flex space-x-6">
-			{
-				navItems.map((item) => (
-					<a
-						href={item.href}
-						class="text-gray-700 hover:text-primary-500 transition duration-150 ease-in-out"
-					>
-						{item.label}
-					</a>
-				))
-			}
-		</nav>
-		<!-- Ganti ke gform -->
-		<a
-			href="/#"
-			class="bg-primary-500 text-white px-4 py-2 rounded hover:bg-primary-600 transition duration-150 ease-in-out"
-		>
-			Bergabung
-		</a>
-	</div>
+  <div class="container mx-auto px-4 py-4 flex justify-between items-center">
+    <a href="/" class="link link-hover flex font-bold items-center">
+      <span class="ml-2 text-red-700 font-bold h-4 text-xl">FOKUS</span>
+    </a>
+    <nav class="hidden md:flex space-x-6">
+      {
+        navItems.map((item) => (
+          <a
+            href={item.href}
+            class={`text-gray-700 hover:text-primary-500 transition duration-150 ease-in-out ${
+              pathname === item.href ? "text-red-500 font-bold" : ""
+            }`}
+          >
+            {item.label}
+          </a>
+        ))
+      }
+    </nav>
+  </div>
 </header>

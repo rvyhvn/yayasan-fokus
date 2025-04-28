@@ -1,126 +1,174 @@
 ---
-import { Image } from "astro:assets";
-// import heroImg from "../assets/hero-image.png";
-const heroImg = "https://placehold.co/600x400";
+const carouselItems = [
+  {
+    id: "slide1",
+    img: "https://img.daisyui.com/images/stock/photo-1625726411847-8cbb60cc71e6.webp",
+    title: "Pelatihan Untuk Mengembangkan UMKM",
+    text: "Kami memberikan pelatihan untuk mengembangkan keterampilan pelaku UMKM",
+    button: "Program Kami",
+  },
+  {
+    id: "slide2",
+    img: "https://img.daisyui.com/images/stock/photo-1609621838510-5ad474b7d25d.webp",
+    title: "Second Slide",
+    text: "This is the second slide content",
+    button: "Get Started",
+  },
+];
 ---
 
 <section class="bg-white py-20">
-	<div class="container mx-auto px-4">
-		<div class="flex flex-col lg:flex-row items-center">
-			<div class="lg:w-1/2 lg:pr-12">
-				<h2
-					class="text-4xl md:text-5xl font-serif font-bold text-gray-900 mb-6"
-				>
-					Forum Kreatif Usaha Sama-sama
-				</h2>
+  <div class="carousel w-full">
+    {
+      carouselItems.map((item, index) => (
+        <div id={item.id} class="carousel-item relative w-full">
+          <img src={item.img} class="w-full object-cover" />
 
-				<p class="text-xl text-gray-700 mb-8">
-					Pemberdayaan UMKM Gunung Samarinda dengan Digitalisasi & Pelatihan
-					Bersama Yayasan FOKUS, kami membantu UMKM berkembang melalui teknologi
-					dan edukasi digital marketing!
-				</p>
-			</div>
-			<div class="lg:w-1/2 mt-10 lg:mt-0 relative">
-				<Image
-					src={heroImg}
-					alt="Happy family"
-					class="rounded-lg shadow-xl"
-					width={600}
-					height={400}
-				/>
-				<button
-					id="playButton"
-					class="absolute bottom-4 left-4 bg-white bg-opacity-80 text-gray-800 px-4 py-2 rounded-full flex items-center space-x-2 hover:bg-opacity-100 transition duration-300"
-				>
-					<svg
-						xmlns="http://www.w3.org/2000/svg"
-						class="h-6 w-6"
-						fill="none"
-						viewBox="0 0 24 24"
-						stroke="currentColor"
-					>
-						<path
-							stroke-linecap="round"
-							stroke-linejoin="round"
-							stroke-width="2"
-							d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z"
-						></path>
-						<path
-							stroke-linecap="round"
-							stroke-linejoin="round"
-							stroke-width="2"
-							d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-					</svg>
-					<span>See how this works</span>
-				</button>
-			</div>
-		</div>
-	</div>
+          <div class="absolute inset-0 bg-black/40 flex flex-col justify-center items-center text-white text-center p-6">
+            <h2 class="text-3xl font-bold mb-2">{item.title}</h2>
+            <p class="mb-4">{item.text}</p>
+            <button class="btn btn-outline">{item.button}</button>
+          </div>
+
+          <div class="absolute left-5 right-5 top-1/2 flex -translate-y-1/2 transform justify-between">
+            <a
+              href={`#${carouselItems[(index - 1 + carouselItems.length) % carouselItems.length].id}`}
+              class="btn btn-circle"
+            >
+              ❮
+            </a>
+            <a
+              href={`#${carouselItems[(index + 1) % carouselItems.length].id}`}
+              class="btn btn-circle"
+            >
+              ❯
+            </a>
+          </div>
+        </div>
+      ))
+    }
+  </div>
+  <div class="container mx-auto px-4">
+    <div class="flex flex-col lg:flex-row lg:gap-0 mt-8">
+      <div class="lg:w-1/2 lg:pr-12">
+        <h2 class="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
+          Tentang Kami
+        </h2>
+      </div>
+      <div class="lg:w-1/2 mt-10 lg:mt-0 relative">
+        <p class="text-xl text-justify text-gray-700 mb-8">
+          <span class="text-lg text-red-700 font-bold"
+            >FOKUS (FORUM KREATIF USAHA SAMA-SAMA)</span
+          >
+          adalah komunitas pemberdayaan UMKM Gunung Samarinda dengan Digitalisasi
+          & Pelatihan Bersama Yayasan FOKUS, kami membantu UMKM berkembang melalui
+          teknologi dan edukasi digital marketing!
+        </p>
+      </div>
+    </div>
+    <div class="flex flex-col lg:flex-row items-center mt-4">
+      <div class="lg:w-1/2 lg:pr-12">
+        <p class="font-semibold text-red-700 text-xl">Pelatihan</p>
+      </div>
+      <div class="lg:w-1/2 lg:pr-12">
+        <p class="font-semibold text-red-700 text-xl">Pemberdayaan</p>
+      </div>
+      <div class="lg:w-1/2 lg:pr-12">
+        <p class="font-semibold text-red-700 text-xl">Komunitas</p>
+      </div>
+    </div>
+    <div class="flex flex-col lg:flex-row items-center mt-4">
+      <div class="lg:w-1/2 lg:pr-12">
+        <p class="text-black text-justify">
+          Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quisquam
+          illum, amet optio maxime debitis laboriosam! Dolores, sunt aliquid
+          totam eos reiciendis deserunt consectetur quia aperiam fugit qui
+          voluptate. Voluptatibus, quis.
+        </p>
+      </div>
+      <div class="lg:w-1/2 lg:pr-12">
+        <p class="text-black text-justify">
+          Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quisquam
+          illum, amet optio maxime debitis laboriosam! Dolores, sunt aliquid
+          totam eos reiciendis deserunt consectetur quia aperiam fugit qui
+          voluptate. Voluptatibus, quis.
+        </p>
+      </div>
+      <div class="lg:w-1/2 lg:pr-12">
+        <p class="text-black text-justify">
+          Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quisquam
+          illum, amet optio maxime debitis laboriosam! Dolores, sunt aliquid
+          totam eos reiciendis deserunt consectetur quia aperiam fugit qui
+          voluptate. Voluptatibus, quis.
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Video Modal -->
+  <div
+    id="videoModal"
+    class="fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center hidden"
+  >
+    <div class="bg-white rounded-lg p-8 max-w-3xl w-full">
+      <div class="flex justify-between items-center mb-4">
+        <h3 class="text-2xl font-bold">How Your Co. Works</h3>
+        <button id="closeModal" class="text-gray-500 hover:text-gray-700">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            class="h-6 w-6"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M6 18L18 6M6 6l12 12"></path>
+          </svg>
+        </button>
+      </div>
+      <div class="aspect-w-16 aspect-h-9">
+        <iframe
+          id="youtubeVideo"
+          class="w-full h-full"
+          src="https://www.youtube.com/embed/f4D55v97wLM"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          allowfullscreen></iframe>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // components/Hero.astro
+    const playButton = document.getElementById("playButton");
+    const videoModal = document.getElementById("videoModal");
+    const closeModal = document.getElementById("closeModal");
+    const youtubeVideo = document.getElementById(
+      "youtubeVideo"
+    ) as HTMLIFrameElement;
+
+    playButton?.addEventListener("click", () => {
+      videoModal?.classList.remove("hidden");
+    });
+
+    closeModal?.addEventListener("click", () => {
+      videoModal?.classList.add("hidden");
+      youtubeVideo.contentWindow?.postMessage(
+        '{"event":"command","func":"pauseVideo","args":""}',
+        "*"
+      );
+    });
+
+    videoModal?.addEventListener("click", (e) => {
+      if (e.target === videoModal) {
+        videoModal.classList.add("hidden");
+        youtubeVideo.contentWindow?.postMessage(
+          '{"event":"command","func":"pauseVideo","args":""}',
+          "*"
+        );
+      }
+    });
+  </script>
 </section>
-
-<!-- Video Modal -->
-<div
-	id="videoModal"
-	class="fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center hidden"
->
-	<div class="bg-white rounded-lg p-8 max-w-3xl w-full">
-		<div class="flex justify-between items-center mb-4">
-			<h3 class="text-2xl font-bold">How Your Co. Works</h3>
-			<button id="closeModal" class="text-gray-500 hover:text-gray-700">
-				<svg
-					xmlns="http://www.w3.org/2000/svg"
-					class="h-6 w-6"
-					fill="none"
-					viewBox="0 0 24 24"
-					stroke="currentColor"
-				>
-					<path
-						stroke-linecap="round"
-						stroke-linejoin="round"
-						stroke-width="2"
-						d="M6 18L18 6M6 6l12 12"></path>
-				</svg>
-			</button>
-		</div>
-		<div class="aspect-w-16 aspect-h-9">
-			<iframe
-				id="youtubeVideo"
-				class="w-full h-full"
-				src="https://www.youtube.com/embed/f4D55v97wLM"
-				allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-				allowfullscreen></iframe>
-		</div>
-	</div>
-</div>
-
-<script>
-	// components/Hero.astro
-	const playButton = document.getElementById("playButton");
-	const videoModal = document.getElementById("videoModal");
-	const closeModal = document.getElementById("closeModal");
-	const youtubeVideo = document.getElementById(
-		"youtubeVideo"
-	) as HTMLIFrameElement;
-
-	playButton?.addEventListener("click", () => {
-		videoModal?.classList.remove("hidden");
-	});
-
-	closeModal?.addEventListener("click", () => {
-		videoModal?.classList.add("hidden");
-		youtubeVideo.contentWindow?.postMessage(
-			'{"event":"command","func":"pauseVideo","args":""}',
-			"*"
-		);
-	});
-
-	videoModal?.addEventListener("click", (e) => {
-		if (e.target === videoModal) {
-			videoModal.classList.add("hidden");
-			youtubeVideo.contentWindow?.postMessage(
-				'{"event":"command","func":"pauseVideo","args":""}',
-				"*"
-			);
-		}
-	});
-</script>
